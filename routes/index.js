@@ -33,6 +33,12 @@ router.get('/hpPlaying', (req, res) => {
     controller.getHpIsPlaying(req, res);
 });
 
+
+router.post('/playHp', (req, res) => {
+    controller.playHP(req, res);
+});
+
+
 router.post('/soundFile', (req, res) => {
     controller.sendSoundFile(req, res);
 });
