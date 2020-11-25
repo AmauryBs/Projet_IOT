@@ -2,7 +2,7 @@ const router = require('express').Router();
 const controller = require('../controllers');
 
 router.post('/modifyColor', (req, res) => {
-    controller.tAmodifyColor(req, res);
+    controller.modifyColor(req, res);
 });
 
 router.get('/allSensor', (req, res) => {
@@ -34,7 +34,7 @@ router.get('/hpPlaying', (req, res) => {
 });
 
 
-router.post('/playHp', (req, res) => {
+router.post('/playHP', (req, res) => {
     controller.playHP(req, res);
 });
 

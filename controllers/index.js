@@ -11,6 +11,7 @@ async function sendSoundFile(req,res){
         console.log(err);
         console.log(httpResponse);
     });
+    return("Done")
 }
 
 async function getAllSensor(req,res){
@@ -78,32 +79,51 @@ async function getHpIsPlaying(req,res){
 
 async function modifyColor(req,res){
     var url = ""
-    var intensity = req.intensity
-    var rgb = req.rgb
-    var result = await request.post({
-        'url': url, 
-        'headers': headers,
-        body : {
-            'intensity':intensity,
-            'rgb':rgb
-        }
-    });
-    res.json(result)
+    var intensity = req.body.intensity
+    var rgb = req.body.rgb
+    // var result = await request.post({
+    //     'url': url, 
+    //     'headers': headers,
+    //     body : {
+    //         'intensity':intensity,
+    //         'rgb':rgb
+    //     }
+    // });
+    saveBDD("LED",[{name: "intensity", value: String(intensity)},{name: "rgb", value: String(rgb)}])
+    res.json("result")
 }
 
 
-async function Playhp(req,res){
+async function playHP(req,res){
     var url = ""
-    var state = req.state
-    var result = await request.post({
-        'url': url, 
-        'headers': headers,
-        body : {
-            'state':state
-        }
-    });
-    res.json(result)
+    var state = req.body.state
+    var volume = req.body.volume
+    // var result = await request.post({
+    //     'url': url, 
+    //     body : {
+    //         'state':state,
+    //         'volume':volume
+    //     }
+    // });
+    saveBDD("hp",[{name: "state", value: String(state)},{name: "volume", value: String(volume)}])
+    res.json("result")
 }
+
+
+async function saveBDD(deviceName,newValue, sourceName){
+    const newDevice = models.Device({
+        device : deviceName,
+        variable : newValue,
+        date : new Date,
+        source : sourceName
+    });
+    try{
+        await newDevice.save()
+    }catch(e){
+        console.error(e.error);
+    }
+}
+
 module.exports.sendSoundFile = sendSoundFile;  
 module.exports.modifyColor = modifyColor;  
 module.exports.getHpIsPlaying = getHpIsPlaying;  
@@ -113,4 +133,4 @@ module.exports.getPushSensor = getPushSensor;
 module.exports.getIntensitySensor = getIntensitySensor;  
 module.exports.getPresenceSensor = getPresenceSensor;  
 module.exports.getAllSensor = getAllSensor;
-module.exports.getAllSensor = getAllSensor;   
+module.exports.playHP = playHP;   

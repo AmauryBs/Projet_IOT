@@ -9,7 +9,7 @@ const DeviceSchema = new Schema({
         name: String,
         value: String
     }],
-    date : Date,
+    date : mongoose.Number,
     source : String
 });
 
