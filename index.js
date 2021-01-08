@@ -28,7 +28,7 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 const APIRoutes = require("./routes");
 app.use(APIRoutes);
 
-const port = process.env.PORT || 3000
-app.listen(port, function () {
+const port = process.env.PORT || 80
+app.listen(port, '0.0.0.0',function () {
   console.log('app listening on port 3000!')
 })
