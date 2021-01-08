@@ -4,14 +4,18 @@ const Schema = mongoose.Schema;
 
 
 const DeviceSchema = new Schema({
-    device : String,
-    variable : [{
-        name: String,
-        value: String
+    _id : String,
+    name : String,
+    type : String,
+    stateList : [{
+        date: mongoose.Number,
+        source : String,
+        variables:[{
+            name: String,
+            value: String,
+        }]
     }],
-    date : mongoose.Number,
-    source : String
-});
+},{ _id: false });
 
 
 var Device = mongoose.model('Device', DeviceSchema)

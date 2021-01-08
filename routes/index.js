@@ -5,8 +5,13 @@ router.post('/modifyColor', (req, res) => {
     controller.modifyColor(req, res);
 });
 
-router.get('/allSensor', (req, res) => {
-    controller.getAllSensor(req, res);
+
+router.get('/allDevice', (req, res) => {
+    controller.getAllDevice(req, res);
+});
+
+router.get('/device/:id', (req, res) => {
+    controller.getOneDevice(req, res);
 });
 
 router.get('/presenceSensor', (req, res) => {
