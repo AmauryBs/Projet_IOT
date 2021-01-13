@@ -84,17 +84,30 @@ async function modifyColor(req,res){
     res.json(result)
 }
 
+async function modifyTimeBeforeReplay(req,res){
+    var url = host+"/modifyTimeBeforeReplay"
+    var time = req.body.time
+    var result = await request.post({
+        'url': url, 
+        'headers': headers,
+        formData : {
+            time:time,
+        }
+        
+    });
+    res.json(result)
+}
+
 
 async function playHP(req,res){
     var url = host+"/playHP"
     var state = req.body.state
-    var volume = req.body.volume
-    var source = req.body.source
+    var source = "API"
     var result = await request({
         'url': url, 
         'headers': headers,
     });
-    
+    saveBDD( req.body.id,{date: new Date(), source:source, variables: [{name: "state", value: String(state)}]})
     res.json(result)
 }
 
@@ -144,4 +157,5 @@ module.exports.getIntensitySensor = getIntensitySensor;
 module.exports.getPresenceSensor = getPresenceSensor;  
 module.exports.playHP = playHP;
 module.exports.getAllDevice = getAllDevice;
-module.exports.getOneDevice = getOneDevice;   
+module.exports.getOneDevice = getOneDevice; 
+module.exports.modifyTimeBeforeReplay = modifyTimeBeforeReplay;

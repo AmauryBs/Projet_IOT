@@ -48,4 +48,8 @@ router.post('/soundFile', (req, res) => {
     controller.sendSoundFile(req, res);
 });
 
+router.post('/timeReplayHP', (req, res) => {
+    controller.modifyTimeBeforeReplay(req, res);
+});
+
 module.exports = router;
