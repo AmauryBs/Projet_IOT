@@ -59,6 +59,15 @@ async function getHpIsPlaying(req,res){
     //saveBDD( req.body.id,{date: new Date(), source:source, variables: [{name: "state", value: String(state)},{name: "volume", value: String(volume)}]})
 }
 
+async function getTimeBeforeReplay(req,res){
+    var url = host+"/getTimeBeforeReplay"
+    var result = await request({
+        'url': url, 
+        'headers': headers,
+    });
+    res.json(result)
+}
+
 async function modifyColor(req,res){
     var url = host+"/modifyColor"
     var state = req.body.state
@@ -159,3 +168,4 @@ module.exports.playHP = playHP;
 module.exports.getAllDevice = getAllDevice;
 module.exports.getOneDevice = getOneDevice; 
 module.exports.modifyTimeBeforeReplay = modifyTimeBeforeReplay;
+module.exports.getTimeBeforeReplay = getTimeBeforeReplay;

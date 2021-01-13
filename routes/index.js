@@ -52,4 +52,8 @@ router.post('/timeReplayHP', (req, res) => {
     controller.modifyTimeBeforeReplay(req, res);
 });
 
+router.get('/getTimeBeforeReplay', (req, res) => {
+    controller.getTimeBeforeReplay(req, res);
+});
+
 module.exports = router;
