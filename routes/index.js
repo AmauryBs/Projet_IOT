@@ -34,7 +34,7 @@ router.get('/ledValues', (req, res) => {
     controller.getLedValues(req, res);
 });
 
-router.get('/hpPlaying', (req, res) => {
+router.post('/hpPlaying', (req, res) => {
     controller.getHpIsPlaying(req, res);
 });
 

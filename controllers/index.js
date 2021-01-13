@@ -1,31 +1,12 @@
 const request = require("request-promise");
 const models = require("../schemas");
 let fs = require('fs');
-var host = "192.168.1.15:80";
+var host = "http://192.168.1.15:80";
 headers= {
     "Content-Type": "application/json",
   }
 
-async function sendSoundFile(req,res){
-    var url = ""
-    var options = {
-        file: fs.createReadStream(__dirname + "/inputFile/sound.txt")
-    }
-    var result = await request.post({'url': url, 'headers': headers, formData :options}, function(err, httpResponse, body){
-        console.log(err);
-        console.log(httpResponse);
-    });
-    return("Done")
-}
 
-async function getAllSensor(req,res){
-    var url = ""
-    var result = await request({
-        'url': url, 
-        'headers': headers,
-    });
-    res.json(result)
-}
 
 async function getPresenceSensor(req,res){
     var url = host+"/getPresenceSensor"
@@ -73,12 +54,9 @@ async function getLedValues(req,res){
 }
 
 async function getHpIsPlaying(req,res){
-    var url = ""
-    var result = await request({
-        'url': url, 
-        'headers': headers,
-    });
-    res.json(result)
+
+    console.log(req.body.source)
+    //saveBDD( req.body.id,{date: new Date(), source:source, variables: [{name: "state", value: String(state)},{name: "volume", value: String(volume)}]})
 }
 
 async function modifyColor(req,res){
@@ -86,40 +64,38 @@ async function modifyColor(req,res){
     var state = req.body.state
     var intensity = req.body.intensity
     var r = req.body.r
-    var g= req.body.g
+    var g = req.body.g
     var b = req.body.b
     var source = req.body.source
+    var mod = req.body.led_mod
     var result = await request.post({
         'url': url, 
         'headers': headers,
-        body : {
-            'intensity':intensity,
-            'R':r,
-            'G':g,
-            'B':b,
-            'led_mod':mode
-
+        formData : {
+            intensity:intensity,
+            R:r,
+            G:g,
+            B:b,
+            led_mod:mod
         }
+        
     });
-    saveBDD(req.body.id,{date: new Date(), source:source, variables:[{name: "state", value: String(state)},{name: "intensity", value: String(intensity)},{name: "rgb", value: String(rgb)}]})
+    saveBDD(req.body.id,{date: new Date(), source:source, variables:[{name: "state", value: String(state)},{name: "intensity", value: String(intensity)},{name: "r", value: String(r),},{name: "g", value: String(g),},{name: "b", value: String(b),},{name: "mod", value: String(mod),}]})
     res.json(result)
 }
 
 
 async function playHP(req,res){
-    var url = ""
+    var url = host+"/playHP"
     var state = req.body.state
     var volume = req.body.volume
     var source = req.body.source
-    // var result = await request.post({
-    //     'url': url, 
-    //     body : {
-    //         'state':state,
-    //         'volume':volume
-    //     }
-    // });
-    saveBDD( req.body.id,{date: new Date(), source:source, variables: [{name: "state", value: String(state)},{name: "volume", value: String(volume)}]})
-    res.json("result")
+    var result = await request({
+        'url': url, 
+        'headers': headers,
+    });
+    
+    res.json(result)
 }
 
 
@@ -159,7 +135,6 @@ async function getOneDevice(req,res){
     }
 }
 
-module.exports.sendSoundFile = sendSoundFile;  
 module.exports.modifyColor = modifyColor;  
 module.exports.getHpIsPlaying = getHpIsPlaying;  
 module.exports.getLedValues = getLedValues;  
@@ -167,7 +142,6 @@ module.exports.getTouchSensor = getTouchSensor;
 module.exports.getPushSensor = getPushSensor;  
 module.exports.getIntensitySensor = getIntensitySensor;  
 module.exports.getPresenceSensor = getPresenceSensor;  
-module.exports.getAllSensor = getAllSensor;
 module.exports.playHP = playHP;
 module.exports.getAllDevice = getAllDevice;
 module.exports.getOneDevice = getOneDevice;   
