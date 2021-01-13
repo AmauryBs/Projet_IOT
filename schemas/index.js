@@ -7,8 +7,9 @@ const DeviceSchema = new Schema({
     _id : String,
     name : String,
     type : String,
+    img: String,
     stateList : [{
-        date: Date,
+        date: mongoose.Number,
         source : String,
         variables:[{
             name: String,

@@ -30,5 +30,5 @@ app.use(APIRoutes);
 
 const port = process.env.PORT || 80
 app.listen(port, '0.0.0.0',function () {
-  console.log('app listening on port 3000!')
+  console.log('app listening on port 80!')
 })
