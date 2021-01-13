@@ -1,6 +1,7 @@
 const request = require("request-promise");
 const models = require("../schemas");
 let fs = require('fs');
+var host = "192.168.1.15:80";
 headers= {
     "Content-Type": "application/json",
   }
@@ -27,7 +28,7 @@ async function getAllSensor(req,res){
 }
 
 async function getPresenceSensor(req,res){
-    var url = ""
+    var url = host+"/getPresenceSensor"
     var result = await request({
         'url': url, 
         'headers': headers,
@@ -36,7 +37,7 @@ async function getPresenceSensor(req,res){
 }
 
 async function getIntensitySensor(req,res){
-    var url = ""
+    var url = host+"/getIntensitySensor"
     var result = await request({
         'url': url, 
         'headers': headers,
@@ -63,7 +64,7 @@ async function getTouchSensor(req,res){
 }
 
 async function getLedValues(req,res){
-    var url = ""
+    var url = host+"/getLedValues"
     var result = await request({
         'url': url, 
         'headers': headers,
@@ -81,21 +82,27 @@ async function getHpIsPlaying(req,res){
 }
 
 async function modifyColor(req,res){
-    var url = ""
+    var url = host+"/modifyColor"
     var state = req.body.state
     var intensity = req.body.intensity
-    var rgb = req.body.rgb
+    var r = req.body.r
+    var g= req.body.g
+    var b = req.body.b
     var source = req.body.source
-    // var result = await request.post({
-    //     'url': url, 
-    //     'headers': headers,
-    //     body : {
-    //         'intensity':intensity,
-    //         'rgb':rgb
-    //     }
-    // });
+    var result = await request.post({
+        'url': url, 
+        'headers': headers,
+        body : {
+            'intensity':intensity,
+            'R':r,
+            'G':g,
+            'B':b,
+            'led_mod':mode
+
+        }
+    });
     saveBDD(req.body.id,{date: new Date(), source:source, variables:[{name: "state", value: String(state)},{name: "intensity", value: String(intensity)},{name: "rgb", value: String(rgb)}]})
-    res.json("result")
+    res.json(result)
 }
 
 
