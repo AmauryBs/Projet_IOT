@@ -56,4 +56,13 @@ router.get('/getTimeBeforeReplay', (req, res) => {
     controller.getTimeBeforeReplay(req, res);
 });
 
+router.post('/connexion', (req, res) => {
+    controller.findUserByCredentials(req, res);
+});
+
+router.post('/createUser', (req, res) => {
+    controller.createUser(req, res);
+});
+
+
 module.exports = router;

@@ -157,6 +157,55 @@ async function getOneDevice(req,res){
     }
 }
 
+async function findUserByCredentials(req,res){
+    var connexion;
+    try{
+        await models.User.findOne({ email: req.params.email, password: req.params.password}, function(err, result) {
+            if (err) { console.log(err);}
+                
+            if (result) {
+                connexion = "Found";
+            } else {
+                connexion = "Not Found";
+            }
+        });
+    }catch(e){
+        console.error(e);
+        res.status(500).send("error requesting database");
+
+    }finally{
+        res.json(connexion)
+    }
+
+}
+
+async function createUser(req,res){
+    var response = 0;
+    try{
+        console.log(req.body.nom);
+        const user = new models.User({
+            nom :  req.body.nom,
+            prenom:  req.body.prenom,
+            age :  req.body.age,
+            sexe : req.body.sexe,
+            email: req.body.email, 
+            password: req.body.password,
+            adresse :  req.body.adresse,
+            ville :  req.body.ville,
+            pays :  req.body.pays,
+        });
+
+        user.save();
+
+    }catch(e){
+        console.error(e);
+        res.status(500).send("error requesting database");
+
+    }finally{
+        res.json(response)
+    }
+}
+
 module.exports.modifyColor = modifyColor;  
 module.exports.getHpIsPlaying = getHpIsPlaying;  
 module.exports.getLedValues = getLedValues;  
@@ -169,3 +218,5 @@ module.exports.getAllDevice = getAllDevice;
 module.exports.getOneDevice = getOneDevice; 
 module.exports.modifyTimeBeforeReplay = modifyTimeBeforeReplay;
 module.exports.getTimeBeforeReplay = getTimeBeforeReplay;
+module.exports.findUserByCredentials = findUserByCredentials;
+module.exports.createUser = createUser;

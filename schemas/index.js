@@ -18,9 +18,26 @@ const DeviceSchema = new Schema({
     }],
 },{ _id: false });
 
+const UserSchema = new Schema({
+    //_id : String,
+    nom : String,
+    prenom : String,
+    age : mongoose.Number,
+    sexe : String,
+    email : String,
+    password : String,
+    adresse : String,
+    ville : String,
+    pays : String,
+    
+});
+
+
 
 var Device = mongoose.model('Device', DeviceSchema)
+var User = mongoose.model('User', UserSchema)
 
 module.exports = {
-Device : Device
+Device : Device,
+User :User
 }
