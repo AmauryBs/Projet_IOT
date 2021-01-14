@@ -39,7 +39,7 @@ router.post('/hpPlaying', (req, res) => {
 });
 
 
-router.post('/playHP', (req, res) => {
+router.get('/playHP', (req, res) => {
     controller.playHP(req, res);
 });
 
