@@ -160,7 +160,7 @@ async function getOneDevice(req,res){
 async function findUserByCredentials(req,res){
     var connexion;
     try{
-        await models.User.findOne({ email: req.params.email, password: req.params.password}, function(err, result) {
+        await models.User.findOne({ email: req.body.email, password: req.body.password}, function(err, result) {
             if (err) { console.log(err);}
                 
             if (result) {
