@@ -78,7 +78,7 @@ async function modifyColor(req, res) {
         }
 
     });
-    saveBDD(req.body.id, { date: new Date(), source: source, variables: [{ name: "state", value: String(state) }, { name: "intensity", value: String(intensity) }, { name: "r", value: String(r), }, { name: "g", value: String(g), }, { name: "b", value: String(b), }, { name: "mod", value: String(mod), }] })
+    saveBDD("led1", { date: new Date(), source: source, variables: [{ name: "state", value: String(state) }, { name: "intensity", value: String(intensity) }, { name: "r", value: String(r), }, { name: "g", value: String(g), }, { name: "b", value: String(b), }, { name: "mod", value: String(mod), }] })
     //console.log(result)
     res.json(JSON.parse(result))
 }
@@ -94,6 +94,7 @@ async function modifyTimeBeforeReplay(req, res) {
         }
 
     });
+    saveBDD("hp1", { date: new Date(), source: source, variables: [{ name: "timeBeforeReplay", value: String(time) }] })
     res.json(result)
 }
 
@@ -106,7 +107,7 @@ async function playHP(req, res) {
         'url': url,
         'headers': headers,
     });
-    saveBDD(req.body.id, { date: new Date(), source: source, variables: [{ name: "state", value: String(state) }] })
+    saveBDD("hp1", { date: new Date(), source: source, variables: [{ name: "state", value: String(state) }] })
     res.json(result)
 }
 
