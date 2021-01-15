@@ -10,7 +10,7 @@ router.get('/allDevice', (req, res) => {
     controller.getAllDevice(req, res);
 });
 
-router.get('/device/:id', (req, res) => {
+router.get('/oneDevice/:id', (req, res) => {
     controller.getOneDevice(req, res);
 });
 

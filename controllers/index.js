@@ -59,12 +59,10 @@ async function modifyColor(req, res) {
     console.log(typeof req.body.G)
     console.log(typeof req.body.B)
     console.log(typeof req.body.mod)
-    var state = req.body.state
     var intensity = req.body.intensity
     var r = req.body.R
     var g = req.body.G
     var b = req.body.B
-    var source = req.body.source
     var mod = req.body.mod
     var result = await request.post({
         'url': url,
@@ -78,7 +76,7 @@ async function modifyColor(req, res) {
         }
 
     });
-    saveBDD("led1", { date: new Date(), source: source, variables: [{ name: "state", value: String(state) }, { name: "intensity", value: String(intensity) }, { name: "r", value: String(r), }, { name: "g", value: String(g), }, { name: "b", value: String(b), }, { name: "mod", value: String(mod), }] })
+    saveBDD("led1", { date: new Date(), source: "app", variables: [{ name: "intensity", value: String(intensity) }, { name: "r", value: String(r), }, { name: "g", value: String(g), }, { name: "b", value: String(b), }, { name: "mod", value: String(mod), }] })
     //console.log(result)
     res.json(JSON.parse(result))
 }
@@ -94,20 +92,19 @@ async function modifyTimeBeforeReplay(req, res) {
         }
 
     });
-    saveBDD("hp1", { date: new Date(), source: source, variables: [{ name: "timeBeforeReplay", value: String(time) }] })
+    saveBDD("hp1", { date: new Date(), source: "app", variables: [{ name: "timeBeforeReplay", value: String(time) }] })
     res.json(result)
 }
 
 
 async function playHP(req, res) {
     var url = host + "/playHP"
-    var state = req.body.state
-    var source = "API"
+    var source = "app"
     var result = await request({
         'url': url,
         'headers': headers,
     });
-    saveBDD("hp1", { date: new Date(), source: source, variables: [{ name: "state", value: String(state) }] })
+    saveBDD("hp1", { date: new Date(), source: source, variables: [{ name: "state", value: "On" }] })
     res.json(result)
 }
 
