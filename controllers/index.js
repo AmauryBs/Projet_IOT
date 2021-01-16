@@ -1,7 +1,7 @@
 const request = require("request-promise");
 const models = require("../schemas");
 let fs = require('fs');
-var host = "http://192.168.0.14:80";
+var host = "http://192.168.1.15:80";
 headers = {
     "Content-Type": "application/json",
 }
@@ -40,7 +40,8 @@ async function getLedValues(req, res) {
 async function getHpIsPlaying(req, res) {
 
     console.log(req.body.source)
-    //saveBDD( req.body.id,{date: new Date(), source:source, variables: [{name: "state", value: String(state)},{name: "volume", value: String(volume)}]})
+    saveBDD("hp1", { date: new Date(), source:req.body.source, variables: [{ name: "timeBeforeReplay", value: String(req.body.time) }] })
+    
 }
 
 async function getTimeBeforeReplay(req, res) {
@@ -54,11 +55,6 @@ async function getTimeBeforeReplay(req, res) {
 
 async function modifyColor(req, res) {
     var url = host + "/modifyColor"
-    console.log(typeof req.body.intensity)
-    console.log(typeof req.body.R)
-    console.log(typeof req.body.G)
-    console.log(typeof req.body.B)
-    console.log(typeof req.body.mod)
     var intensity = req.body.intensity
     var r = req.body.R
     var g = req.body.G
@@ -141,6 +137,7 @@ async function getOneDevice(req, res) {
         res.status(500).send("error requesting database");
 
     } finally {
+
         res.json(deviceHist)
     }
 }
