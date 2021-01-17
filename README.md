@@ -33,7 +33,7 @@ La carte electronique est une ESP32 de chez adafruit avec un grove shield.
 ### Langage
 L'API a été développée sur Arduino IDE
 ### Prérequis
-Avoir installer arduino IDE
+Avoir installer Arduino IDE
 ### Installation et lancement
 <ul>
   <li>Cloner le projet</li>
