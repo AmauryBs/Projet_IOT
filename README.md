@@ -21,7 +21,7 @@ Avoir installer mongoDB, Node.js et npm
   node index.js ou nodemon index.js 
   ```
   Le serveur est lancé.
-  ![sortie](sreen/nodemon.png)
+  ![nodemon](screen/nodemon.PNG)
 </ul>
 
 
