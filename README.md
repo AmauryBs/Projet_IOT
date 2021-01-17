@@ -21,19 +21,26 @@ Avoir installer mongoDB, Node.js et npm
   node index.js ou nodemon index.js 
   ```
   Le serveur est lancé.
+  </br>
   ![nodemon](screen/nodemon.PNG)
+  </br>
+  Vous pouvez maintenant l'utiliser.
+</ul>
+
+## Objet connecté
+Le code pour l'objet connecté est disponible dans le dossier /ESP32 à la racine du projet.
+La carte electronique est une ESP32 de chez adafruit avec un grove shield.
+### Langage
+L'API a été développée sur Arduino IDE
+### Prérequis
+Avoir installer arduino IDE
+### Installation et lancement
+<ul>
+  <li>Cloner le projet</li>
+  <li>Trouver le code dans /ESP32/Projet_IoT/ avec Arduino IDE</li>
 </ul>
 
 
-End with an example of getting some data out of the system or using it for a little demo
-
-### Running the tests
-
-Explain how to run the automated tests for this system
 
 
 
-
-
-
-Le code pour l'objet connecté est disponible dans le dossier /ESP32 à la racine du projet.
