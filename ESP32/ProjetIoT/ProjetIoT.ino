@@ -47,11 +47,11 @@ int melodie[][3] = { {4, 2, 2}, {5, 2, 1}, {7, 2, 3}, {0, 3, 6},
 };
 
 //connexion WIFI
-//const char* ssid = "freeboxRBS";
-const char* ssid = "Livebox-C0FA";
+//const char* ssid = "freeboxDFR";
+const char* ssid = "";
 
-//const char* password = "chezmoirichard";
-const char* password = "2E34A43747E567A2CF64F261F1";
+//const char* password = "passwod";
+const char* password = "";
 
 
 //port
