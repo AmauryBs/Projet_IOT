@@ -4,23 +4,27 @@ Ce projet est un développement d'une API REST pour la communication entre un ob
 ## API
 ### Langage
 L'API a été développée en Node.js et utilise Express comme serveur. Elle fait appel à une base de données MongoDB.
+### Prérequis
+Avoir installer mongoDB, Node.js et npm
 ### Installation
 <ul>
   <li>Cloner le projet</li>
+  <li>Se placer à la racine du projet (/nom_du_proj)</li>
+  <li>Executer la commande suivante pour installer le projet : </li>
+  
+  ```
+  npm install 
+  ```
+  <li>Puis : </li>
+  ```
+  node index.js 
+  ```
+  ou 
+  ```
+  nodemon index.js 
+  ```
 </ul>
 
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
 
 End with an example of getting some data out of the system or using it for a little demo
 
